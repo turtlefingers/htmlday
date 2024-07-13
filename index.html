@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>HTML Day</title>
+  <style>
+    h1, h1 *{
+      display:flex !important;
+    }
+    h1:hover, h1 *:hover{
+      opacity:.5;
+    }
+
+
+    .hor{
+      flex-direction: row;
+    }
+
+    .ver{
+      flex-direction: column;
+    }
+  </style>
+</head>
+<body>
+  <script>
+    function create(e){
+      e.stopPropagation();
+      const parent = e.target;
+      const elems = ["h2","h3","h4","ul","ol","li","p"];
+      const minNumber = 1;
+      const maxNumber = 3;
+      
+      const n = parseInt(minNumber + Math.random()*(maxNumber - minNumber));
+      for(let i=0; i<n; i++){
+        const ran1 = parseInt(Math.random()*elems.length);
+        const ran2 = parseInt(Math.random()*2);
+        const type = elems[ran1];
+        const elem = document.createElement(type);
+        parent.append(elem);
+        elem.setAttribute("onclick","create(event)");
+        elem.textContent = type;
+        elem.classList.add(ran2>0?"hor":"ver");
+      }
+    }
+  </script>
+  
+  
+  <h1 onclick="create(event)">HTML Day</h1>
+  
+
+</body>
+</html>
